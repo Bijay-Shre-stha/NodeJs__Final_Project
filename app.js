@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const { node_todos } = require("./modal/index.js")
 const port = 3000;
 
 
@@ -11,21 +12,42 @@ app.set('view engine', 'ejs')
 
 
 app.use(express.json())
-app.use(express.urlencoded({ extended: false }))
+app.use(express.urlencoded({ extended: true }))
 
 
-app.get("/", (req, res)=>{
-    res.render("index");
+app.get("/", async (req, res) => {
+    const allNotes = await node_todos.findAll()
+    res.render("index", {
+        node_todos: allNotes
+    });
 })
 
-app.get("/create",(req,res)=>{
+app.get("/create", (req, res) => {
     res.render("create");
 })
 
+app.post("/create", async (req, res) => {
+    try {
+        const title = req.body.title
+        const description = req.body.description
+        const tag = req.body.tag
 
-
-
-
+        await node_todos.create({
+            title: title,
+            tag: tag,
+            description: description
+        })
+        const script = `
+        <script>
+            alert("Note added");
+            window.location.href = "/";
+        </script>
+        `;
+        res.send(script);
+    } catch (err) {
+        console.log(err);
+    }
+})
 
 
 app.listen(port, () => console.log(`App listening at http://localhost:${port}`));

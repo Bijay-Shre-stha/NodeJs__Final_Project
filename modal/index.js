@@ -33,7 +33,7 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 // importing model files 
-db.imagesDB = require("./todoModal")(sequelize, DataTypes);
+db.node_todos = require("./todoModal")(sequelize, DataTypes);
 
 
 db.sequelize.sync({ force: true }).then(() => {
