@@ -36,7 +36,7 @@ db.sequelize = sequelize;
 db.node_todos = require("./todoModal")(sequelize, DataTypes);
 
 
-db.sequelize.sync({ force: true }).then(() => {
+db.sequelize.sync({ force: false }).then(() => {
     console.log("yes re-sync done");
 });
 
