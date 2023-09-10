@@ -97,7 +97,7 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="/">Home</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item ">
                     <a class="nav-link" href="/create">Create</a>
                 </li>
             </ul>
@@ -108,13 +108,16 @@
         <% node_todos.forEach((note) => { %>
             <div class="card">
                 <h2 class="text-black font-weight-bolder"> Title: <%= note.title %></h2>
-                <h3>Tag: <%= note.tag %></h3>
+                <h3>Tag: <%= note.tag %></h3><br>
                 <p>Description: <%= note.description %></p>
-                <a href="/" class="btn btn-success">Edit</a><br>
+                <br>
+                <!-- <a href="/" class="btn btn-success">Edit</a><br>
                 <a href="/" class="btn btn-danger">Delete</a>
                 <div class="post-footer">
                     Published on <%= note.createdAt.toISOString().slice(0, 10) %><br>
-                </div>
+                </div> -->
+                <!-- <button class="btn btn-success"><a class="text-white text-decoration-none" href="/note/<%=note.id%>">See More</a></button> -->
+                <a class="text-white text-decoration-none bg-success btn" href="/note/<%=note.id%>">See More</a>
             </div>
         <% }); %>
     </div>

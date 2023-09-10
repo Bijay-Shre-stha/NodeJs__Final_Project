@@ -50,5 +50,19 @@ app.post("/create", async (req, res) => {
 })
 
 
+//See More
+app.get("/note/:id", async (req, res) => {
+    const { id } = req.params
+    const note = await node_todos.findAll({
+        where: {
+            id: id
+        }
+    })
+    res.render("seeMore.ejs", {
+        note: note
+    })
+}
+)
+
 app.listen(port, () => console.log(`App listening at http://localhost:${port}`));
 
