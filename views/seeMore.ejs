@@ -33,45 +33,54 @@
             margin: 0 20px;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 20px auto;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
+        h2 {
+            font-size: 36px;
+            margin: 20px 0;
+            font-family: Georgia, serif;
+            text-shadow: 2px 2px 4px #333;
         }
 
-        .card {
-            background-color: var(--background);
+        h4 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #666;
+        }
+
+        p.lead {
+            font-size: 18px;
+            line-height: 1.8;
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            padding: 15px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
             padding: 20px;
-            margin: 20px;
-            width: 300px;
-            text-align: center;
         }
 
-        .card h2 {
-            font-size: 24px;
-            margin-bottom: 10px;
-            color: #333;
-
-            /* Change title color */
+        .author-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
         }
 
-        .card h3 {
-            color: var(--accent);
-            margin-bottom: 10px;
-            font-size: 20px;
-            /* Increase subtitle font size */
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+            background-color: #333;
         }
 
-        .card p {
-            font-size: 16px;
-            line-height: 1.5;
-            color: #666;
-            /* Change description color */
+        .author-name {
+            font-weight: bold;
         }
+
         .post-footer {
             margin-top: 20px;
             font-style: italic;
@@ -105,17 +114,26 @@
     </nav>
 
     <div class="container">
-        <div class="card">
-            <h2 class="text-black font-weight-bolder"> Title: <%= note[0].title %></h2>
-            <h3>Tag: <%= note[0].tag %></h3><br>
-            <p>Description: <%= note[0].description %></p>
-            <br>
-            <div class="post-footer">
-                Published on <%= note[0].createdAt.toISOString().slice(0, 10) %><br>
+        <div class="author-info">
+            <div class="author-name">
+                <h2 class="mb-0">TITLE: <%- note[0].title %></h2><br>
+                <h4 class="text-secondary">TAG: <%- note[0].tag %></h4>
             </div>
         </div>
+        <div class="post-content">
+            <p class="lead">DESCRIPTION: <%- note[0].description %></p>
+        </div>
+
+        <div class="post-footer">
+            Published on <%- note[0].createdAt.toISOString().slice(0,10) %>
+        </div><br>
+        <!-- Edit -->
+        <button class=" btn btn-success"><a class="text-white text-decoration-none" href="/edit/<%-note[0].id %>">Edit</a></button>
+        <!--delete-->
+        <button class=" btn btn-danger"><a class="text-white text-decoration-none" href="/delete/<%-note[0].id %>">Delete</a></button>
+
     </div>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>

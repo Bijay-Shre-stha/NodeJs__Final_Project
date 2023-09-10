@@ -61,8 +61,24 @@ app.get("/note/:id", async (req, res) => {
     res.render("seeMore.ejs", {
         note: note
     })
-}
-)
+})
+
+//Delete
+app.get("/delete/:id", async (req, res) => {
+    const { id } = req.params
+    await node_todos.destroy({
+        where: {
+            id: id
+        }
+    })
+    const script = `
+    <script>
+        alert("Note Deleted");
+        window.location.href = "/";
+    </script>
+    `;
+    res.send(script);
+})
 
 app.listen(port, () => console.log(`App listening at http://localhost:${port}`));
 

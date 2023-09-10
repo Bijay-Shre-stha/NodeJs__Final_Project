@@ -48,7 +48,7 @@
             padding: 20px;
             margin: 20px;
             width: 300px;
-            text-align: center;
+            text-transform: capitalize;
         }
 
         .card h2 {
@@ -111,12 +111,6 @@
                 <h3>Tag: <%= note.tag %></h3><br>
                 <p>Description: <%= note.description %></p>
                 <br>
-                <!-- <a href="/" class="btn btn-success">Edit</a><br>
-                <a href="/" class="btn btn-danger">Delete</a>
-                <div class="post-footer">
-                    Published on <%= note.createdAt.toISOString().slice(0, 10) %><br>
-                </div> -->
-                <!-- <button class="btn btn-success"><a class="text-white text-decoration-none" href="/note/<%=note.id%>">See More</a></button> -->
                 <a class="text-white text-decoration-none bg-success btn" href="/note/<%=note.id%>">See More</a>
             </div>
         <% }); %>
