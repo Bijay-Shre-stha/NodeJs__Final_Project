@@ -80,5 +80,48 @@ app.get("/delete/:id", async (req, res) => {
     res.send(script);
 })
 
+//edit
+app.get("/edit/:id", async (req, res) => {
+    const { id } = req.params;
+    const note = await node_todos.findByPk(id); // Assuming you have a 'findByPk' method for finding a single note by its primary key.
+    res.render('edit', { note: note });
+});
+
+app.get("/edit/:id", async (req, res) => {
+    const { id } = req.params;
+    const note = await node_todos.findByPk(id); // Assuming you have a 'findByPk' method for finding a single note by its primary key.
+    res.render('edit', { note: note });
+});
+
+app.post("/edit/:id", async (req, res) => {
+    const { id } = req.params; // Fix typo here
+    try {
+        const title = req.body.title;
+        const description = req.body.description;
+        const tag = req.body.tag;
+
+        await node_todos.update(
+            {
+                title: title,
+                tag: tag,
+                description: description
+            },
+            {
+                where: { id: id }
+            }
+        );
+
+        const script = `
+        <script>
+            alert("Note updated");
+            window.location.href = "/";
+        </script>
+        `;
+        res.send(script);
+    } catch (err) {
+        console.log(err);
+    }
+});
+
 app.listen(port, () => console.log(`App listening at http://localhost:${port}`));
 

@@ -112,6 +112,8 @@
                 <p>Description: <%= note.description %></p>
                 <br>
                 <a class="text-white text-decoration-none bg-success btn" href="/note/<%=note.id%>">See More</a>
+                <br>
+                <p class="text-danger">Last Update: <%= new Date(note.updatedAt).toLocaleString() %></p>
             </div>
         <% }); %>
     </div>
